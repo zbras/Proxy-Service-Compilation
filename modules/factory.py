@@ -1,3 +1,4 @@
+import os
 from proxy import Proxy
 import regex as re
 import requests as req
@@ -82,6 +83,7 @@ class ProxyService():
     def read_from_proxy_file(self) -> None:
         #   Read all connections stored in the proxy file.
         #   Each gets added to self.connections so that the intrinsic properties of set() do not allow for duplicates.
+        if not os.path.isfile('proxies.txt'): open('proxies.txt', 'w')
         with open('proxies.txt', 'r+') as proxy_file:
             lines = proxy_file.readlines()
             for line in lines:
